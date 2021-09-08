@@ -12,20 +12,24 @@ import model.Roupa;
 
 public class ConexaoController {
 
-    public void InsereRoupa(Roupa roupa) throws IOException {
+    public void InsereRoupa(Roupa roupa, int index) throws IOException {
 
         List<String> lista = lerRoupasAdicionarExcluir();
 
         if (roupa.getCod() == 0) {
             return;
         }
-        String linhaAdd = String.valueOf(roupa.getCod()) + "&" + roupa.getDataEntrada() + "&"
-                + roupa.getLocalCompra() + "&" + roupa.getMarca() + "&" + roupa.getDescricao() + "&"
-                + roupa.getValorEtiqueta() + "&" + roupa.getValorPago() + "&" + roupa.getValorMargem() + "&"
-                + roupa.getValorSugerido();
-
-
+        String linhaAdd = String.valueOf(roupa.getCod()).trim().toUpperCase() + "&" + roupa.getDataEntrada().trim().toUpperCase() + "&" + roupa.getLocalCompra().trim().toUpperCase()
+                + "&" + roupa.getMarca().trim().toUpperCase() + "&" + roupa.getDescricao().trim().toUpperCase() + "&" + roupa.getValorEtiqueta() + "&"
+                + roupa.getValorPago() + "&" + roupa.getValorMargem() + "&" + roupa.getValorSugerido();
+        if(index ==0)
+        {
         lista.add(linhaAdd);
+        }
+        else{
+            lista.add(index, linhaAdd);
+        }
+
         StringBuilder sb = new StringBuilder();
         FileWriter writer = new FileWriter("save\\save.txt");
 
@@ -42,6 +46,42 @@ public class ConexaoController {
             writer.close();
         }
 
+    }
+
+    public static void EditaRoupa() throws IOException {
+        List<String> lista = lerRoupasAdicionarExcluir();
+        String exibe = lerRoupas(lerRoupasAdicionarExcluir());
+        System.out.println(exibe);
+
+        StringBuilder sb = new StringBuilder();
+
+        System.out.println("Qual o ID da roupa que deseja editar?");
+        int resposta = 0;
+
+        try {
+            resposta = Integer.parseInt(System.console().readLine());
+        } catch (Exception erro) {
+            System.out.println("Digite um id válido");
+        }
+
+        FileWriter writer = new FileWriter("save\\save.txt");
+        int index = resposta - 1;
+        lista.remove(resposta - 1);
+
+        for (String string : lista) {
+
+            sb.append(string + "\n");
+        }
+
+        writer.write(sb.toString());
+        writer.close();
+
+        System.out.println("Pressione enter para editar...");
+        System.console().readLine();
+
+        RoupaController roupa = new RoupaController();
+        ConexaoController cnxController = new ConexaoController();
+        cnxController.InsereRoupa(roupa.CriarRoupa(), index);
     }
 
     public static void DeleteRoupa() throws IOException {
@@ -65,7 +105,7 @@ public class ConexaoController {
         lista.remove(resposta - 1);
 
         for (String string : lista) {
-            
+
             sb.append(string + "\n");
         }
 
