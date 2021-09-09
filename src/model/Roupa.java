@@ -13,6 +13,7 @@ public class Roupa {
     private double valorPago;
     private double valorMargem;
     private double valorSugerido;
+    private CorRoupa corRoupa;
 
     public int getCod() {
         return cod;
@@ -86,8 +87,16 @@ public class Roupa {
         this.valorSugerido = valorSugerido;
     }
 
+    public CorRoupa getCor() {
+        return corRoupa;
+    }
+
+    public void setCor(CorRoupa corRoupa) {
+        this.corRoupa = corRoupa;
+    }
+
     public enum Tamanho {
-        PP("PP"), P("P"), M("M"), G("G"), GG("GG");
+      P("P"), M("M"), G("G");
 
         private String tamanho;
 
@@ -100,20 +109,7 @@ public class Roupa {
         }
     }
 
-    public enum Cor {
-        Amarelo("Amarelo"), Azul("Azul"), Branco("Branco"), Cinza("Cinza"), Preto("Preto"), Verde("Verde"),
-        Vermelho("Vermelho"), Roxo("Roxo"), Rosa("Rosa");
-
-        private String cor;
-
-        Cor(String cor) {
-            this.cor = cor;
-        }
-
-        public String getCor() {
-            return cor;
-        }
-    }
+    
 
     public enum Tipo{
         Vestido("Vestido"), Saia("Saia"), Conjunto("Conjunto"), Camiseta("Camiseta"), Calca("Calça"), Shorts("Shorts");
