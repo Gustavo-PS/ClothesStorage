@@ -19,14 +19,15 @@ public class ConexaoController {
         if (roupa.getCod() == 0) {
             return;
         }
-        String linhaAdd = String.valueOf(roupa.getCod()).trim().toUpperCase() + "&" + roupa.getDataEntrada().trim().toUpperCase() + "&" + roupa.getLocalCompra().trim().toUpperCase()
-                + "&" + roupa.getMarca().trim().toUpperCase() + "&" + roupa.getDescricao().trim().toUpperCase() + "&" + roupa.getValorEtiqueta() + "&"
-                + roupa.getValorPago() + "&" + roupa.getValorMargem() + "&" + roupa.getValorSugerido();
-        if(index ==0)
-        {
-        lista.add(linhaAdd);
-        }
-        else{
+        String linhaAdd = String.valueOf(roupa.getCod()).trim().toUpperCase() + "&"
+                + roupa.getDataEntrada().trim().toUpperCase() + "&" + roupa.getLocalCompra().trim().toUpperCase() + "&"
+                + roupa.getTipoRoupa().toString() + "&" + roupa.getMarca().trim().toUpperCase() + "&"
+                + roupa.getDescricao().trim().toUpperCase() + "&" + roupa.getTamanho().toString() + "&"
+                + roupa.getCor().toString() + "¨&" + roupa.getValorEtiqueta() + "&" + roupa.getValorPago() + "&"
+                + roupa.getValorMargem() + "&" + roupa.getValorSugerido();
+        if (index == 0) {
+            lista.add(linhaAdd);
+        } else {
             lista.add(index, linhaAdd);
         }
 
@@ -62,6 +63,7 @@ public class ConexaoController {
             resposta = Integer.parseInt(System.console().readLine());
         } catch (Exception erro) {
             System.out.println("Digite um id válido");
+            return;
         }
 
         FileWriter writer = new FileWriter("save\\save.txt");
@@ -133,13 +135,15 @@ public class ConexaoController {
             return "Não há roupas";
         } else {
             for (String string : lista) {
-                if (string != "") {
+                
+                if (!string.equals("")) {
                     String[] linha = string.split("&");
                     sb.append("ID: " + count + "\n" + "Código da Peça: " + linha[0] + "\n" + "Data de Entrada: "
-                            + linha[1] + "\n" + "Local da Compra: " + linha[2] + "\n" + "Marca: " + linha[3] + "\n"
-                            + "Descrição: " + linha[4] + "\n" + "Valor da Etiqueta: " + linha[5] + "\n" + "Valor Pago: "
-                            + linha[6] + "\n" + "Valor Margem: " + linha[7] + "\n" + "Valor Sugerido: " + linha[8]
-                            + "\n" + "\n");
+                            + linha[1] + "\n" + "Local da Compra: " + linha[2] + "\n" + "Tipo da Peça: " + linha[3]
+                            + "\n" + "Marca: " + linha[4] + "\n" + "Descrição: " + linha[5] + "\n" + "Tamanho: "
+                            + linha[6] + "\n" + "Cor: " + linha[7] + "\n" + "Valor da Etiqueta: " + linha[8] + "\n"
+                            + "Valor Pago: " + linha[9] + "\n" + "Valor Margem: " + linha[10] + "\n"
+                            + "Valor Sugerido: " + linha[11] + "\n" + "\n");
                     count++;
                 }
 

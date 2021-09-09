@@ -7,14 +7,16 @@ public class Roupa {
     private int cod;
     private String dtEntrada;
     private String localCompra;
+    private TipoRoupa tipoRoupa;
     private String marca;
     private String descricao;
+    private TamanhoRoupa tamanho;
+    private CorRoupa corRoupa;
     private double valorEtiqueta;
     private double valorPago;
     private double valorMargem;
     private double valorSugerido;
-    private CorRoupa corRoupa;
-
+    
     public int getCod() {
         return cod;
     }
@@ -39,6 +41,14 @@ public class Roupa {
         this.localCompra = local;
     }
 
+    public TipoRoupa getTipoRoupa() {
+        return tipoRoupa;
+    }
+
+    public void setTipoRoupa(TipoRoupa tipo) {
+        this.tipoRoupa = tipo;
+    }
+
     public String getMarca() {
         return marca;
     }
@@ -53,6 +63,22 @@ public class Roupa {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public TamanhoRoupa getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(TamanhoRoupa tamanho) {
+        this.tamanho = tamanho;
+    }
+
+    public CorRoupa getCor() {
+        return corRoupa;
+    }
+
+    public void setCor(CorRoupa corRoupa) {
+        this.corRoupa = corRoupa;
     }
 
     public double getValorEtiqueta() {
@@ -85,43 +111,5 @@ public class Roupa {
 
     public void setValorSugerido(double valorSugerido) {
         this.valorSugerido = valorSugerido;
-    }
-
-    public CorRoupa getCor() {
-        return corRoupa;
-    }
-
-    public void setCor(CorRoupa corRoupa) {
-        this.corRoupa = corRoupa;
-    }
-
-    public enum Tamanho {
-      P("P"), M("M"), G("G");
-
-        private String tamanho;
-
-        Tamanho(String tamanho) {
-            this.tamanho = tamanho;
-        }
-
-        public String getTamanho() {
-            return tamanho;
-        }
-    }
-
-    
-
-    public enum Tipo{
-        Vestido("Vestido"), Saia("Saia"), Conjunto("Conjunto"), Camiseta("Camiseta"), Calca("Calça"), Shorts("Shorts");
-
-        private String tipo;
-
-        Tipo(String tipo){
-            this.tipo = tipo;
-        }
-
-        public String getTipo(){
-            return tipo;
-        }
     }
 }

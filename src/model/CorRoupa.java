@@ -2,7 +2,7 @@ package model;
 
     public enum CorRoupa {
         AMARELO("Amarelo"), AZUL("Azul"), BRANCO("Branco"), CINZA("Cinza"), PRETO("Preto"), VERDE("Verde"),
-        VERMELHO("Vermelho");
+        VERMELHO("Vermelho"), OUTRO("Outro");
 
 
         private String cor;

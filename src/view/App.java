@@ -4,92 +4,100 @@ import model.Conexao;
 import controller.*;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        
+
         Conexao cnx = new Conexao();
         cnx.VerificaArquivo();
 
         ExibeMenu();
-        
+
     }
 
-    public static void ExibeMenu() throws InterruptedException, IOException{
+    public static void ExibeMenu() throws InterruptedException, IOException {
         limparTela();
-        System.out.println("Seja bem vindo ao sistema de estoque de roupas");
-        System.out.println("----------------------------------------------");
-        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("----------------------------------------------------");
+        System.out.println("|  Seja bem vindo ao sistema de estoque de roupas  |");
+        System.out.println("----------------------------------------------------");
+        System.out.println("|            O que deseja fazer hoje?              |");
+        System.out.println("----------------------------------------------------");
+        System.out.println("|            1 - Adicionar item                    |");
+        System.out.println("|            2 - Editar item                       |");
+        System.out.println("|            3 - Deletar item                      |");
+        System.out.println("|            4 - Visualizar todos os itens         |");
+        System.out.println("|            5 - Sair                              |");
+        System.out.println("----------------------------------------------------");
+
+        
+        int option = 0;
+
         try {
-            var moveOn = false;
+            option = Integer.parseInt(System.console().readLine());
+        } catch (Exception e) {
+            System.out.println("Digite uma opção válida");
+        }
 
-            do {
-                System.out.println("O que deseja fazer hoje?");
-                System.out.println("1 - Adicionar item");
-                System.out.println("2 - Editar item");
-                System.out.println("3 - Deletar item");
-                System.out.println("4 - Visualizar todos os itens");
-                System.out.println("5 - Sair");
-
-                var option = scanner.nextInt();
-                System.out.println("----------------------------------");
-
-                switch (option) {
-                    case 1:
-                    try{
+        switch (option) {
+            case 1:
+                try {
                     RoupaController roupa = new RoupaController();
                     ConexaoController cnxController = new ConexaoController();
-                    cnxController.InsereRoupa(roupa.CriarRoupa(),0);
+                    cnxController.InsereRoupa(roupa.CriarRoupa(), 0);
+                    limparTela();
                     System.out.println("Item adicionado com sucesso");
-                    System.console().readLine();
+                    Thread.sleep(3000);
                     ExibeMenu();
-                    }
-                    catch (Exception erro){
-                        System.out.println(erro.getMessage());
-                    }
+                } catch (Exception erro) {
+                    System.out.println(erro.getMessage());
+                    ExibeMenu();
+                }
+                
 
-                    case 2:
-                    try{
+            case 2:
+                try {
                     ConexaoController.EditaRoupa();
+                    limparTela();
                     System.out.println("Item editado com sucesso");
-                    System.console().readLine();
+                    Thread.sleep(3000);
                     ExibeMenu();
-                    }
-                    catch(Exception erro){
-                        System.out.println(erro.getMessage());
-                    }
-
-                    case 3:
-                    try{
+                } catch (Exception erro) {
+                    System.out.println(erro.getMessage());
+                    ExibeMenu();
+                }
+                
+            case 3:
+                try {
                     ConexaoController.DeleteRoupa();
+                    limparTela();
                     System.out.println("Item deletado com sucesso");
-                    System.console().readLine();
+                    Thread.sleep(3000);
                     ExibeMenu();
-                    }
-                    catch(Exception erro){
-                        System.out.println(erro.getMessage());
-                    }
-
-                    case 4:
-                    try{
+                } catch (Exception erro) {
+                    System.out.println(erro.getMessage());
+                    ExibeMenu();
+                }
+                
+            case 4:
+                try {
+                    limparTela();
                     System.out.println(ConexaoController.lerRoupas(ConexaoController.lerRoupasAdicionarExcluir()));
                     System.out.println("Pressione Enter para seguir...");
                     System.console().readLine();
                     ExibeMenu();
-                    }
-                    catch(Exception erro){
-                        System.out.println(erro.getMessage());
-                    }
+                } catch (Exception erro) {
+                    System.out.println(erro.getMessage());
+                    ExibeMenu();
                 }
+                
+            case 5:
+                System.out.println("Até logo...");
+                Thread.sleep(3000);
+                System.exit(0);
 
-            } while (moveOn);
-
-        } catch (Exception err) {
-            System.out.println(err.getMessage());
-
-        } finally {
-            scanner.close();
+            default:
+                ExibeMenu();
         }
     }
 
