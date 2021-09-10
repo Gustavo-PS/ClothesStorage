@@ -15,7 +15,6 @@ public class RoupaController {
         Roupa roupa = new Roupa();
 
         try {
-
             // Código
             System.out.println("Código da peça:");
             roupa.setCod(scanner.nextInt());
@@ -30,7 +29,7 @@ public class RoupaController {
 
             // Tipo da peça
             System.out.println(
-                    "Selecione o tipo da peça: \nOpções disponíveis: \n1 - VESTIDO, \n2 - SAIA \n3 - CONJUNTO \n4 - CAMISETA \n5 - CALÇA \n6 - SHORTS");
+                    "Selecione o tipo da peça: \nOpções disponíveis: \n1 - VESTIDO, \n2 - SAIA \n3 - CONJUNTO \n4 - CAMISETA \n5 - CALÇA \n6 - SHORTS \n7 - OUTRO");
             TipoRoupa tipoRoupaSelecionada = null;
             switch (Integer.parseInt(scanner.nextLine())) {
                 case 1:
@@ -85,7 +84,8 @@ public class RoupaController {
             roupa.setDescricao(scanner.nextLine());
 
             // Tamanho
-            System.out.println("Selecione o tamanho da peça: \nOpções disponíveis: \n1 - P \n2 - M \n3 - G");
+            System.out
+                    .println("Selecione o tamanho da peça: \nOpções disponíveis: \n1 - P \n2 - M \n3 - G \n4 - OUTRO");
             TamanhoRoupa tamanhoRoupaSelecionado = null;
             switch (Integer.parseInt(scanner.nextLine())) {
                 case 1:
@@ -108,7 +108,7 @@ public class RoupaController {
 
             // Cor
             System.out.println(
-                    "Selecione a cor da peça: \nOpções disponíveis: \n1 - AMARELO, \n2 - AZUL \n3 - BRANCO \n4 - CINZA \n5 - PRETO \n6 - VERDE \n7 - VERMELHO");
+                    "Selecione a cor da peça: \nOpções disponíveis: \n1 - AMARELO, \n2 - AZUL \n3 - BRANCO \n4 - CINZA \n5 - PRETO \n6 - VERDE \n7 - VERMELHO \n8 - OUTRO");
             CorRoupa corRoupaSelecionado = null;
             switch (Integer.parseInt(scanner.nextLine())) {
                 case 1:
@@ -162,16 +162,15 @@ public class RoupaController {
             System.out.println("Valor sugerido:");
             roupa.setValorSugerido(scanner.nextDouble());
 
-        }
-
-        catch (Exception erro) {
+        } catch (Exception erro) {
             System.out.println("Digite um valor válido");
         }
 
         finally {
-            scanner.close();
+            System.out.println("Close");
+            // scanner.close();
         }
-
+        //scanner.close();
         return roupa;
     }
 }
