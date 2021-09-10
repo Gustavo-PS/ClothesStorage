@@ -2,8 +2,8 @@ package view;
 
 import model.Conexao;
 import controller.*;
-
 import java.io.IOException;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -11,13 +11,14 @@ public class App {
         Conexao cnx = new Conexao();
         cnx.VerificaArquivo();
 
+        
         ExibeMenu();
-
+        
     }
 
     public static void ExibeMenu() throws InterruptedException, IOException {
         limparTela();
-        
+        Scanner scanner = new Scanner(System.in);
         System.out.println("----------------------------------------------------");
         System.out.println("|  Seja bem vindo ao sistema de estoque de roupas  |");
         System.out.println("----------------------------------------------------");
@@ -31,10 +32,10 @@ public class App {
         System.out.println("----------------------------------------------------");
 
         
-        int option = 0;
+        int option=0;
 
         try {
-            option = Integer.parseInt(System.console().readLine());
+            option = Integer.parseInt(scanner.nextLine());
         } catch (Exception e) {
             System.out.println("Digite uma opção válida");
         }
