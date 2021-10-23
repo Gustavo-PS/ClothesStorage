@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import trheadsample.*;
 
 import model.Roupa;
 
@@ -41,6 +42,7 @@ public class ConexaoController {
             }
 
             writer.write(sb.toString());
+            montaLog(1);
         } catch (Exception erro) {
             System.out.println(erro.getMessage());
         } finally {
@@ -112,6 +114,7 @@ public class ConexaoController {
         }
 
         writer.write(sb.toString());
+        montaLog(2);
         writer.close();
     }
 
@@ -150,5 +153,10 @@ public class ConexaoController {
             }
         }
         return sb.toString();
+    }
+
+    public static void montaLog(int acaoExecutada){
+        ThreadSampleClass threadLog = new ThreadSampleClass(acaoExecutada);
+        threadLog.run();
     }
 }
